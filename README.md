@@ -68,6 +68,9 @@ streams(u-int) : number of streams in that week
 
 ## ~~ references ~~
 spotify api docs~ [developers spotify](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-several-audio-features)
+
 pivot~ [bartomiejczyewski's spotify top 200](https://www.kaggle.com/datasets/bartomiejczyewski/spotify-top-200-weekly-global-20172021)
+
 idea~ [yelexa's spotify top 200](https://www.kaggle.com/datasets/yelexa/spotify200)
+
 github~ [my github page for the dataset](https://github.com/younver/spotify-top-200-dataset)
