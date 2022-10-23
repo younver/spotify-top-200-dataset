@@ -4,8 +4,8 @@ import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 
 # header
-CLIENT_ID       = "9ac7e145a6574e8a8ad9e7824b3bfa8c"
-CLIENT_SECRET   = "be1b7f16d7bd431583a562649ec0d91f"
+CLIENT_ID       = "YOUR_CLIENT_ID"
+CLIENT_SECRET   = "YOUR_CLIENT_SECRET"
 PATH_ORIGINAL   = "spotify-dataset-pivot.csv"
 PATH_ENHANCED   = "spotify-dataset-enhanced.csv"
 
