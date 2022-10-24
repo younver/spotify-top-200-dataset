@@ -73,4 +73,4 @@ pivot~ [bartomiejczyewski's spotify top 200](https://www.kaggle.com/datasets/bar
 
 idea~ [yelexa's spotify top 200](https://www.kaggle.com/datasets/yelexa/spotify200)
 
-github~ [my github page for the dataset](https://github.com/younver/spotify-top-200-dataset)
+kaggle~ [my kaggle page for the dataset](https://www.kaggle.com/datasets/younver/spotify-top-200-dataset)
