@@ -2,12 +2,9 @@ import os
 import csv
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
-
-# TODO: api key dict & error handling automation & proxies
+from client import CLIENT_ID, CLIENT_SECRET
 
 # header
-CLIENT_ID       = "f08b59d21a4643fa82e37af6a59e1532"
-CLIENT_SECRET   = "d90106e352204066a4dc40f7f2f93f8d"
 PATH_ORIGINAL   = "spotify-dataset-pivot.csv"
 PATH_ENHANCED   = "spotify-dataset-enhanced.csv"
 
@@ -21,10 +18,6 @@ cols = [COL_TR_ID, COL_TR_NAME, COL_TR_POP, COL_TR_NUM, COL_AL_ID, COL_AL_NAME,
         COL_TEMPO, COL_DURATION, COL_PIVOT, COL_STREAMS, COL_TR_INDEX] = range(col_num)
 
 # init spotify object
-proxies = {
-    "http":"http://10.10.10.10:8000",
-    "https":"http://10.10.10.10:8000"
-}
 spotify = spotipy.Spotify(auth_manager=SpotifyClientCredentials(CLIENT_ID, CLIENT_SECRET))
 
 #~~ load progress ~~#
