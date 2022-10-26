@@ -3,9 +3,11 @@ import csv
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 
+# TODO: api key dict & error handling automation & proxies
+
 # header
-CLIENT_ID       = "YOUR_CLIENT_ID"
-CLIENT_SECRET   = "YOUR_CLIENT_SECRET"
+CLIENT_ID       = "f08b59d21a4643fa82e37af6a59e1532"
+CLIENT_SECRET   = "d90106e352204066a4dc40f7f2f93f8d"
 PATH_ORIGINAL   = "spotify-dataset-pivot.csv"
 PATH_ENHANCED   = "spotify-dataset-enhanced.csv"
 
@@ -19,11 +21,13 @@ cols = [COL_TR_ID, COL_TR_NAME, COL_TR_POP, COL_TR_NUM, COL_AL_ID, COL_AL_NAME,
         COL_TEMPO, COL_DURATION, COL_PIVOT, COL_STREAMS, COL_TR_INDEX] = range(col_num)
 
 # init spotify object
+proxies = {
+    "http":"http://10.10.10.10:8000",
+    "https":"http://10.10.10.10:8000"
+}
 spotify = spotipy.Spotify(auth_manager=SpotifyClientCredentials(CLIENT_ID, CLIENT_SECRET))
 
 #~~ load progress ~~#
-last_track_index = 1
-
 # read and delete latest enhanced file
 rows = None
 with open(PATH_ENHANCED, 'r', encoding="utf-8") as enhanced_file:
@@ -31,14 +35,15 @@ with open(PATH_ENHANCED, 'r', encoding="utf-8") as enhanced_file:
     rows = [row for row in csv_reader]
 os.remove(PATH_ENHANCED)
 
+# set last track index
+try:
+    last_track_index = int(rows[-1][COL_TR_INDEX].strip())
+except:
+    last_track_index = 1
+
 # create and write new enhanced file
 with open(PATH_ENHANCED, 'w+', encoding="utf-8") as enhanced_file:
     csv_writer = csv.writer(enhanced_file, delimiter=';')
-
-    try:
-        last_track_index = int(rows[-1][COL_TR_INDEX].strip())
-    except:
-        pass
 
     # write rows except that has last track index
     for i in range(len(rows)):
@@ -55,7 +60,7 @@ with open(PATH_ENHANCED, 'w+', encoding="utf-8") as enhanced_file:
 
         csv_writer.writerow(row)
 
-print("~~ loaded successfully")
+print("~~ loaded successfully, last track index: ", last_track_index)
 
 #~~ enhancing ~~#
 # csv reader & writer objects
@@ -88,11 +93,16 @@ for row in csv_reader:
     #~~ album id operations ~~#
     album = spotify.album(row[COL_AL_ID])
     
-    row[COL_AL_IMG] = album["images"][0]["url"]
     row[COL_AL_TYPE] = album["album_type"]
     row[COL_AL_LABEL] = album["label"]
     row[COL_AL_POP] = album["popularity"]
     row[COL_RELEASE_DATE] = album["release_date"]
+
+    # some albums may not have image
+    try:
+        row[COL_AL_IMG] = album["images"][0]["url"]
+    except:
+        row[COL_AL_IMG] = ""
 
     #~~ audio features operations ~~#
     audio_features = spotify.audio_features(row[COL_TR_ID])
@@ -119,11 +129,16 @@ for row in csv_reader:
 
         row[COL_AR_ID] = artist["id"]
         row[COL_AR_NAME] = artist["name"]
-        row[COL_AR_IMG] = artist["images"][0]["url"]
         row[COL_AR_FOL] = artist["followers"]["total"]
         row[COL_AR_POP] = artist["popularity"]
         row[COL_AR_GENRES] = ', '.join(x for x in artist["genres"])
         row[COL_PIVOT] = pivot
+
+        # some artist may not have image
+        try:
+            row[COL_AR_IMG] = artist["images"][0]["url"]
+        except:
+            row[COL_AR_IMG] = ""
         
         # write row
         csv_writer.writerow(row)
