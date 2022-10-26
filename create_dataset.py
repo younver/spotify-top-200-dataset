@@ -139,7 +139,7 @@ for row in csv_reader:
         
         pivot = 1
 
-    
+
 # close files
 original_file.close()
 enhanced_file.close()
