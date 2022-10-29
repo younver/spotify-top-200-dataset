@@ -1,13 +1,13 @@
 # spotify-top-200-dataset
-Spotify Charts weekly top 200 songs between 2017~2021 in global dataset &amp; api extraction codes
+Spotify Charts weekly top 200 songs between 2017~2021 in global dataset &amp; api extraction codes<br/>
 
 ## ~~ about dataset ~~
-spotify weekly top 200 songs between 2017-2021 in global.
-74.661 rows
-40 columns
-2.986.440 items
+spotify weekly top 200 songs between 2017-2021 in global.<br/>
+74.661 rows<br/>
+40 columns<br/>
+2.986.440 items<br/>
 10 data types (char, tinyint, varchar, bool, date, smallint, decimal, blob,  float, int)
-columns.
+columns.<br/>
 
 ## ~~ columns ~~
 track_id(char[22]) : spotify id for the track
