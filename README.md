@@ -3,9 +3,9 @@ Spotify Charts weekly top 200 songs between 2017~2021 in global dataset &amp; ap
 
 ## ~~ about dataset ~~
 spotify weekly top 200 songs between 2017-2021 in global.
-50.000 rows
-39 columns
-1.950.000 items
+74.661 rows
+40 columns
+2.986.440 items
 10 data types (char, tinyint, varchar, bool, date, smallint, decimal, blob,  float, int)
 columns.
 
