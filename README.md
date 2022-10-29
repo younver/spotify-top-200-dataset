@@ -31,12 +31,12 @@ artist_popularity(decimal[3,2]) : popularity of the artist calculated by spotify
 artist_genres(varchar[666]) : artist’s genres<br/>
 rank(u-tinyint) : ranking of the track on the chart<br/>
 week(date) : end of week the track was in charts as date format<br/>
+streams(u-int) : number of streams in that week<br/>
 collab(bool) : if the participation of the track is multiple or not (0 if there is only one artist, else 1)<br/>
 explicit(bool) : explicit situation of the track<br/>
 release_date(date) : release date of the album (thus track)<br/>
-danceability(double[4, 3]), energy(double[4, 3]), key(tinyint), mode(bool), time_signature(u-tinyint), loudness(float), speechiness(decimal[5,4]), acousticness(float), instrumentalness(float), liveness(decimal[5,4]), valence(decimal[5,4]), tempo(float), duration(u-int)
+danceability(double[4, 3]), energy(double[4, 3]), key(tinyint), mode(bool), time_signature(u-tinyint), loudness(float), speechiness(decimal[5,4]), acousticness(float), instrumentalness(float), liveness(decimal[5,4]), valence(decimal[5,4]), tempo(float), duration(u-int) : [Spotify API Reference](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-audio-features)<br/>
 pivot(bool) : when multiple artists are split into separate rows, this value takes 0 for the first artist and 1 for the rest
-streams(u-int) : number of streams in that week
 
 ## ~~ references ~~
 spotify api docs~ [developers spotify](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-several-audio-features)
